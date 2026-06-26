@@ -1,0 +1,88 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Release-c09731c04fa2b1c43573.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "openarm_bringup",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_build_openarm_bringup_egg::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_build_openarm_bringup_egg-Release-9c07f31c24ff13fd2ebb.json",
+					"name" : "ament_cmake_python_build_openarm_bringup_egg",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_copy_openarm_bringup::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_copy_openarm_bringup-Release-8f8b84d2f52b50796ae6.json",
+					"name" : "ament_cmake_python_copy_openarm_bringup",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "openarm_bringup_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-openarm_bringup_uninstall-Release-fcd2238ef4aaae598d34.json",
+					"name" : "openarm_bringup_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-Release-ae7e1e80587ec9c38a4b.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/botforgelabs2/Desktop/QuestEgo/build/openarm_bringup",
+		"source" : "/home/botforgelabs2/Desktop/QuestEgo/src/openarm_bringup"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}

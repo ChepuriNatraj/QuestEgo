@@ -1,0 +1,2 @@
+timestamp_ns,frame_index,width,height,camera_pos_x,camera_pos_y,camera_pos_z,camera_rot_qx,camera_rot_qy,camera_rot_qz,camera_rot_qw,capture_latency_ms
+84091196900,0,1280,960,0.090289,0.088096,-0.019396,-0.059632,0.009877,0.037903,-0.997452,29.663

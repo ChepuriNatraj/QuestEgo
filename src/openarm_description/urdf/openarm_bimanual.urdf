@@ -1,0 +1,473 @@
+<?xml version="1.0"?>
+<!-- OpenArm Bimanual Robot URDF Description                               -->
+<!-- This URDF is a parametric placeholder. Replace mesh paths with your   -->
+<!-- actual .stl / .dae files in the meshes/ directory.                    -->
+<robot name="openarm_bimanual" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ================================================================== -->
+  <!-- Properties                                                          -->
+  <!-- ================================================================== -->
+  <xacro:property name="PI" value="3.14159265358979323846"/>
+
+  <!-- ================================================================== -->
+  <!-- Materials                                                           -->
+  <!-- ================================================================== -->
+  <material name="dark_grey">
+    <color rgba="0.2 0.2 0.2 1.0"/>
+  </material>
+  <material name="light_grey">
+    <color rgba="0.7 0.7 0.7 1.0"/>
+  </material>
+  <material name="orange">
+    <color rgba="1.0 0.5 0.0 1.0"/>
+  </material>
+
+  <!-- ================================================================== -->
+  <!-- Base Link (torso / mounting plate)                                  -->
+  <!-- ================================================================== -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.2 0.4 0.05"/>
+      </geometry>
+      <material name="dark_grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.2 0.4 0.05"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="5.0"/>
+      <inertia ixx="0.05" ixy="0" ixz="0" iyy="0.05" iyz="0" izz="0.05"/>
+    </inertial>
+  </link>
+
+  <!-- ================================================================== -->
+  <!-- LEFT ARM (7-DOF)                                                    -->
+  <!-- ================================================================== -->
+
+  <!-- Left Shoulder Link -->
+  <link name="openarm_left_link1">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.04"/>
+      </geometry>
+      <material name="light_grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.1" radius="0.04"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.001"/>
+    </inertial>
+  </link>
+
+  <joint name="openarm_left_joint1" type="revolute">
+    <parent link="base_link"/>
+    <child link="openarm_left_link1"/>
+    <origin xyz="0.0 0.2 0.1" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="50" velocity="2.0"/>
+    <dynamics damping="0.5" friction="0.1"/>
+  </joint>
+
+  <link name="openarm_left_link2">
+    <visual>
+      <geometry>
+        <cylinder length="0.15" radius="0.035"/>
+      </geometry>
+      <material name="light_grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.15" radius="0.035"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.8"/>
+      <inertia ixx="0.0015" ixy="0" ixz="0" iyy="0.0015" iyz="0" izz="0.0008"/>
+    </inertial>
+  </link>
+
+  <joint name="openarm_left_joint2" type="revolute">
+    <parent link="openarm_left_link1"/>
+    <child link="openarm_left_link2"/>
+    <origin xyz="0.0 0.0 0.1" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-2.09" upper="2.09" effort="50" velocity="2.0"/>
+    <dynamics damping="0.5" friction="0.1"/>
+  </joint>
+
+  <link name="openarm_left_link3">
+    <visual>
+      <geometry>
+        <cylinder length="0.12" radius="0.03"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.12" radius="0.03"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.0005"/>
+    </inertial>
+  </link>
+
+  <joint name="openarm_left_joint3" type="revolute">
+    <parent link="openarm_left_link2"/>
+    <child link="openarm_left_link3"/>
+    <origin xyz="0.0 0.0 0.15" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="30" velocity="2.0"/>
+    <dynamics damping="0.3" friction="0.1"/>
+  </joint>
+
+  <link name="openarm_left_link4">
+    <visual>
+      <geometry>
+        <cylinder length="0.12" radius="0.028"/>
+      </geometry>
+      <material name="light_grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.12" radius="0.028"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.0005"/>
+    </inertial>
+  </link>
+
+  <joint name="openarm_left_joint4" type="revolute">
+    <parent link="openarm_left_link3"/>
+    <child link="openarm_left_link4"/>
+    <origin xyz="0.0 0.0 0.12" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-2.09" upper="2.09" effort="30" velocity="2.0"/>
+    <dynamics damping="0.3" friction="0.1"/>
+  </joint>
+
+  <link name="openarm_left_link5">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.025"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.1" radius="0.025"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <inertia ixx="0.0005" ixy="0" ixz="0" iyy="0.0005" iyz="0" izz="0.0003"/>
+    </inertial>
+  </link>
+
+  <joint name="openarm_left_joint5" type="revolute">
+    <parent link="openarm_left_link4"/>
+    <child link="openarm_left_link5"/>
+    <origin xyz="0.0 0.0 0.12" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="20" velocity="2.0"/>
+    <dynamics damping="0.2" friction="0.05"/>
+  </joint>
+
+  <link name="openarm_left_link6">
+    <visual>
+      <geometry>
+        <cylinder length="0.08" radius="0.022"/>
+      </geometry>
+      <material name="light_grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.08" radius="0.022"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.2"/>
+      <inertia ixx="0.0003" ixy="0" ixz="0" iyy="0.0003" iyz="0" izz="0.0002"/>
+    </inertial>
+  </link>
+
+  <joint name="openarm_left_joint6" type="revolute">
+    <parent link="openarm_left_link5"/>
+    <child link="openarm_left_link6"/>
+    <origin xyz="0.0 0.0 0.1" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="20" velocity="2.0"/>
+    <dynamics damping="0.2" friction="0.05"/>
+  </joint>
+
+  <link name="openarm_left_link7">
+    <visual>
+      <geometry>
+        <cylinder length="0.06" radius="0.02"/>
+      </geometry>
+      <material name="dark_grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.06" radius="0.02"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+  <joint name="openarm_left_joint7" type="revolute">
+    <parent link="openarm_left_link6"/>
+    <child link="openarm_left_link7"/>
+    <origin xyz="0.0 0.0 0.08" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="2.0"/>
+    <dynamics damping="0.1" friction="0.02"/>
+  </joint>
+
+  <!-- Left End Effector -->
+  <link name="openarm_left_ee">
+    <visual>
+      <geometry>
+        <sphere radius="0.015"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="0.00001" ixy="0" ixz="0" iyy="0.00001" iyz="0" izz="0.00001"/>
+    </inertial>
+  </link>
+
+  <joint name="openarm_left_ee_joint" type="fixed">
+    <parent link="openarm_left_link7"/>
+    <child link="openarm_left_ee"/>
+    <origin xyz="0.0 0.0 0.06" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ================================================================== -->
+  <!-- RIGHT ARM (7-DOF) - mirror of left arm                             -->
+  <!-- ================================================================== -->
+
+  <link name="openarm_right_link1">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.04"/>
+      </geometry>
+      <material name="light_grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.1" radius="0.04"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.001"/>
+    </inertial>
+  </link>
+
+  <joint name="openarm_right_joint1" type="revolute">
+    <parent link="base_link"/>
+    <child link="openarm_right_link1"/>
+    <origin xyz="0.0 -0.2 0.1" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="50" velocity="2.0"/>
+    <dynamics damping="0.5" friction="0.1"/>
+  </joint>
+
+  <link name="openarm_right_link2">
+    <visual>
+      <geometry>
+        <cylinder length="0.15" radius="0.035"/>
+      </geometry>
+      <material name="light_grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.15" radius="0.035"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.8"/>
+      <inertia ixx="0.0015" ixy="0" ixz="0" iyy="0.0015" iyz="0" izz="0.0008"/>
+    </inertial>
+  </link>
+
+  <joint name="openarm_right_joint2" type="revolute">
+    <parent link="openarm_right_link1"/>
+    <child link="openarm_right_link2"/>
+    <origin xyz="0.0 0.0 0.1" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-2.09" upper="2.09" effort="50" velocity="2.0"/>
+    <dynamics damping="0.5" friction="0.1"/>
+  </joint>
+
+  <link name="openarm_right_link3">
+    <visual>
+      <geometry>
+        <cylinder length="0.12" radius="0.03"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.12" radius="0.03"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.0005"/>
+    </inertial>
+  </link>
+
+  <joint name="openarm_right_joint3" type="revolute">
+    <parent link="openarm_right_link2"/>
+    <child link="openarm_right_link3"/>
+    <origin xyz="0.0 0.0 0.15" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="30" velocity="2.0"/>
+    <dynamics damping="0.3" friction="0.1"/>
+  </joint>
+
+  <link name="openarm_right_link4">
+    <visual>
+      <geometry>
+        <cylinder length="0.12" radius="0.028"/>
+      </geometry>
+      <material name="light_grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.12" radius="0.028"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.0005"/>
+    </inertial>
+  </link>
+
+  <joint name="openarm_right_joint4" type="revolute">
+    <parent link="openarm_right_link3"/>
+    <child link="openarm_right_link4"/>
+    <origin xyz="0.0 0.0 0.12" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-2.09" upper="2.09" effort="30" velocity="2.0"/>
+    <dynamics damping="0.3" friction="0.1"/>
+  </joint>
+
+  <link name="openarm_right_link5">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.025"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.1" radius="0.025"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.3"/>
+      <inertia ixx="0.0005" ixy="0" ixz="0" iyy="0.0005" iyz="0" izz="0.0003"/>
+    </inertial>
+  </link>
+
+  <joint name="openarm_right_joint5" type="revolute">
+    <parent link="openarm_right_link4"/>
+    <child link="openarm_right_link5"/>
+    <origin xyz="0.0 0.0 0.12" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="20" velocity="2.0"/>
+    <dynamics damping="0.2" friction="0.05"/>
+  </joint>
+
+  <link name="openarm_right_link6">
+    <visual>
+      <geometry>
+        <cylinder length="0.08" radius="0.022"/>
+      </geometry>
+      <material name="light_grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.08" radius="0.022"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.2"/>
+      <inertia ixx="0.0003" ixy="0" ixz="0" iyy="0.0003" iyz="0" izz="0.0002"/>
+    </inertial>
+  </link>
+
+  <joint name="openarm_right_joint6" type="revolute">
+    <parent link="openarm_right_link5"/>
+    <child link="openarm_right_link6"/>
+    <origin xyz="0.0 0.0 0.1" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="20" velocity="2.0"/>
+    <dynamics damping="0.2" friction="0.05"/>
+  </joint>
+
+  <link name="openarm_right_link7">
+    <visual>
+      <geometry>
+        <cylinder length="0.06" radius="0.02"/>
+      </geometry>
+      <material name="dark_grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.06" radius="0.02"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+  <joint name="openarm_right_joint7" type="revolute">
+    <parent link="openarm_right_link6"/>
+    <child link="openarm_right_link7"/>
+    <origin xyz="0.0 0.0 0.08" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="2.0"/>
+    <dynamics damping="0.1" friction="0.02"/>
+  </joint>
+
+  <!-- Right End Effector -->
+  <link name="openarm_right_ee">
+    <visual>
+      <geometry>
+        <sphere radius="0.015"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="0.00001" ixy="0" ixz="0" iyy="0.00001" iyz="0" izz="0.00001"/>
+    </inertial>
+  </link>
+
+  <joint name="openarm_right_ee_joint" type="fixed">
+    <parent link="openarm_right_link7"/>
+    <child link="openarm_right_ee"/>
+    <origin xyz="0.0 0.0 0.06" rpy="0 0 0"/>
+  </joint>
+
+</robot>

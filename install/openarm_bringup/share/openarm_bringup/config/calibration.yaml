@@ -1,0 +1,41 @@
+# calibration.yaml — Quest-to-OpenArm mapping parameters.
+#
+# These values are loaded by hand_pose_to_moveit.py and batch_record.py.
+# Tune them to match your physical setup.
+
+# Rigid transform from Quest world frame to robot base frame (base_link).
+#   robot_point = translation + scale * quest_point
+scale: 1.0
+translation:
+  x: 0.0   # metres
+  y: 0.0
+  z: 0.0
+
+# Optional rotation (Quaternion) from Quest to robot frame.
+# Set to identity if axes already align.
+rotation:
+  qx: 0.0
+  qy: 0.0
+  qz: 0.0
+  qw: 1.0
+
+# Gripper thresholds (metres, in Quest frame before scaling).
+# Thumb-tip ↔ Index-tip Euclidean distance:
+#   > open_threshold   → gripper OPEN
+#   < closed_threshold → gripper CLOSED
+# Between the two → keep previous state (hysteresis).
+thumb_index_open_threshold: 0.050
+thumb_index_closed_threshold: 0.015
+
+# IK request timeout (seconds).
+ik_timeout: 0.5
+
+# Velocity scaling factor sent to MoveIt (0..1).
+velocity_scaling: 0.1
+
+# Joint state recorder settings:
+recorder:
+  # Subscribe to /joint_states with this QoS depth
+  qos_depth: 100
+  # Output subdirectory under output_dir/session/take/
+  output_subdir: "."
